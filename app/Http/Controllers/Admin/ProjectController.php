@@ -64,7 +64,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::orderBy('name', 'ASC')->get();
+
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -74,7 +76,8 @@ class ProjectController extends Controller
     {
         $request->validate([
             'project_name' => ['required', 'max:255', 'string', Rule::unique('projects')->ignore($project->id)],
-            'project_status' => Rule::in(['to start', 'in progress', 'completed'])
+            'project_status' => Rule::in(['to start', 'in progress', 'completed']),
+            'category_id' => 'nullable|exists:categories,id'
         ]);
         $data = $request->all();
         $data['github_link'] = 'https://github.com/CarloVeronese/'. Str::slug($data['project_name']);

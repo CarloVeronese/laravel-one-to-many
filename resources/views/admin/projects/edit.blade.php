@@ -26,13 +26,14 @@
                 placeholder="Project Description">{!! old('bio', $project->description) !!}</textarea>
         </div>
         <div class="mb-3">
-            <label for="development_type" class="form-label">Type</label>
-            <select type="text" class="form-control" name="development_type" id="development_type" placeholder="Project Type">
-                <option @selected(old('development_',$project->development_) === 'front-end') value="front-end">Front-End</option>
-                <option @selected(old('development_',$project->development_) === 'back-end') value="back-end">Back-End</option>
-                <option @selected(old('development_',$project->development_) === 'full-stack') value="full-stack">Full-Stack</option>
+            <label for="type_id" class="form-label">Type</label>
+            <select type="text" class="form-control" name="type_id" id="type_id">
+              <option>Select a project type</option>
+              @foreach($types as $type)
+                <option @selected( old('type_id', optional($project->type)->id) == $type->id) value="{{ $type->id }}">{{ $type->name }}</option>
+              @endforeach
             </select>
-        </div>
+          </div>
         <div class="mb-3">
             <label for="project_status" class="form-label">Status</label>
             <select type="text" class="form-control" name="project_status" id="project_status" placeholder="Project Status">

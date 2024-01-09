@@ -34,7 +34,7 @@
                         {{ $project->project_name  }}
                         </a>
                     </td>
-                    <td>{{ $project->development_type }}</td>
+                    <td> {{ isset($project->type) ?  $project->type->name : '-' }} </td>
                     <td>{{ $project->github_link }}</td>
                     <td>{{ $project->project_status }}</td>
                     <td>

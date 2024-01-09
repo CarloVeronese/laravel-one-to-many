@@ -27,12 +27,12 @@
       </div>
 
       <div class="mb-3">
-        <label for="development_type" class="form-label">Type</label>
-        <select type="text" class="form-control" name="development_type" id="development_type" placeholder="Project Type" required value="{{old('development_type')}}">
-            <option class="text-secondary">Select a Type</option>
-            <option value="front-end">Front-End</option>
-            <option value="back-end">Back-End</option>
-            <option value="full-stack">Full-Stack</option>
+        <label for="type_id" class="form-label">Type</label>
+        <select type="text" class="form-control" name="type_id" id="type_id">
+          <option>Select a project type</option>
+          @foreach($types as $type)
+            <option @selected( old('type_id') == $type->id) value="{{ $type->id }}">{{ $type->name }}</option>
+          @endforeach
         </select>
       </div>
 

@@ -8,6 +8,9 @@
                 <p class="card-text">{{$project->description}}</p>
                 <div class="d-flex gap-2">
                     <span class="fw-bold">Type: </span>
+                    @if($project->type)
+                        {{$project->type->name}}
+                    @endif
                     <span>{{$project->development_type}}</span>
                 </div>
                 <div class="d-flex gap-2">
